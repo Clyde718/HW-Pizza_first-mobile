@@ -1,0 +1,224 @@
+/*Саму шапку делаем фиксированой*/
+/*Этот класс является основной, условно это контейнер внутри которого всё происходит*/
+.header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 50;
+}
+/*Этому-же класс мы делаем псевдоэлементом заливку цвета и определяем размер*/
+.header:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #373c3f;
+	z-index: 2;
+}
+// Картинка
+.header:after {
+	content: "";
+	position: absolute;
+	background: url("../img/header/navigation-logo.png");
+	width: 104px;
+	height: 83px;
+	right: 10px;
+	top: 7px;
+	z-index: 2;
+}
+/*Контейнер для всего контента шапки с max-width 1180px*/
+.container {
+	max-width: 1180px;
+	position: relative;
+	margin: 0px auto;
+	padding: 0px 10px;
+}
+/*Сам контейнер внутри которого расположени элементы меню*/
+.header__body {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	height: 97px;
+	align-items: center;
+}
+/*Логотип*/
+.header__logo {
+	display: none;
+}
+/*На стандартных экранах бургер спрятан*/
+.header__burger {
+	display: none;
+}
+/*Стили для основного меню и его пунктов*/
+.header__list {
+	display: flex;
+	position: relative;
+	z-index: 2;
+	margin-left: 20px;
+}
+.header__list li {
+	list-style-type: none;
+}
+.header__link {
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 18px;
+	text-decoration: none;
+	margin-right: 30px;
+}
+
+// НА Экране меньше 767
+// юююююююююююю
+@media (max-width: 767px) {
+	body.lock {
+		overflow: hidden;
+	}
+	// Показываем Логотип
+	.header__logo {
+		display: block;
+		color: #fff;
+		text-transform: uppercase;
+		text-decoration: none;
+		font-size: 10px;
+		position: relative;
+		z-index: 3;
+	}
+	// Скрываем картинку
+	.header:after {
+		display: none;
+	}
+	/*Делаем размер Шапки меньше*/
+	.header__body {
+		height: 50px;
+	}
+	/*Показываем бургер и задаём стили*/
+
+	.header__burger {
+		display: block;
+		position: relative;
+		width: 30px;
+		height: 20px;
+		z-index: 3;
+	}
+	.header__burger:before,
+	.header__burger:after {
+		content: "";
+		background-color: #fff;
+		// background-color: #373c3f;
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		left: 0;
+		transition: all 0.3s ease 0s;
+	}
+	.header__burger:before {
+		top: 0;
+	}
+	.header__burger:after {
+		bottom: 0;
+	}
+	.header__burger.active:before {
+		transform: rotate(45deg);
+		top: 9px;
+	}
+	.header__burger.active:after {
+		transform: rotate(-45deg);
+		bottom: 9px;
+	}
+	.header__burger.active span {
+		transform: scale(0);
+	}
+	.header__burger span {
+		position: absolute;
+		background-color: #fff;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		top: 9px;
+		transition: all 0.3s ease 0s;
+	}
+	/**/
+	/*Стилизация меню*/
+	.header__menu {
+		position: fixed;
+		top: -100%;
+		right: 0;
+		overflow: auto;
+		transition: all 0.3s ease 0s;
+	}
+	.header__menu.active {
+		top: 0;
+		margin-top: 50px;
+	}
+	.header__list {
+		display: block;
+		width: 100vw;
+		height: 100vh;
+		background-color: #fff;
+	}
+	.header__list li {
+		text-align: center;
+		margin-right: 0px;
+		padding: 20px 0px;
+		a {
+			color: #373c3f;
+			margin-right: 0px;
+			font-size: 38px;
+			font-weight: bold;
+		}
+		&:hover {
+			background-color: #f5f5f5;
+		}
+		@media (min-width: 321px) and (max-width: 640px) {
+		}
+	}
+	.header__link {
+		font-size: 12px;
+		color: #000;
+	}
+}
+
+// Промежуточные стили между 640 и 767
+@media (min-width: 641px) and (max-width: 767px) {
+	// больше отступ секции
+	.section {
+		margin-top: 50px;
+	}
+	.container {
+		padding: 0px 25px;
+	}
+	// высота хедера
+	.header__body {
+		height: 80px;
+	}
+	// размер бургера
+	.header__burger {
+		width: 50px;
+		height: 40px;
+	}
+	.header__burger:before,
+	.header__burger:after {
+		height: 4px;
+	}
+	.header__burger.active:before {
+		top: 18px;
+	}
+	.header__burger.active:after {
+		bottom: 18px;
+	}
+	.header__burger span {
+		width: 100%;
+		height: 4px;
+		top: 18px;
+	}
+	.header__menu.active {
+		margin-top: 80px;
+	}
+	// Стили бургер-меню
+	.header__link {
+		font-size: 14px;
+	}
+}
